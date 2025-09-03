@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"strings"
 
 	"github.com/miekg/dns"
 )
@@ -70,7 +71,11 @@ func generateZone(zone Zone) generatedZone {
 	outZone := make([]dns.RR, 0)
 
 	for _, entry := range zone.Records {
-		record := genRecord(zone.Name, entry)
+		zoneName := zone.Name
+		if !strings.HasSuffix(zoneName, ".") {
+			zoneName = zoneName + "."
+		}
+		record := genRecord(zoneName, entry)
 		outZone = append(outZone, record)
 		log.Printf("added %s\n", record)
 	}
