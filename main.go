@@ -70,11 +70,12 @@ func genRecord(zoneName string, entry ZoneEntry) dns.RR {
 func generateZone(zone Zone) generatedZone {
 	outZone := make([]dns.RR, 0)
 
+	zoneName := zone.Name
+	if !strings.HasSuffix(zoneName, ".") {
+		zoneName = zoneName + "."
+	}
+
 	for _, entry := range zone.Records {
-		zoneName := zone.Name
-		if !strings.HasSuffix(zoneName, ".") {
-			zoneName = zoneName + "."
-		}
 		record := genRecord(zoneName, entry)
 		outZone = append(outZone, record)
 		log.Printf("added %s\n", record)
