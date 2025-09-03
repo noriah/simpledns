@@ -1,0 +1,21 @@
+{
+  "listen": "127.0.0.1:8053",
+  "zones": [
+    {
+      "name": "my.awesome.tld.",
+      "records": [
+        {"type": "A", "value": "10.23.34.56"},
+        {"type": "AAAA", "value": "ff00::0"},
+        {"type": "TXT", "value": "a text value"}
+      ]
+    },
+    {
+      "name": "mx.my.awesome.tld.",
+      "records": [
+        {"type": "MX", "value": "mail.other.tld."},
+        {"type": "TXT", "value": "some text"},
+        {"type": "TXT", "value": "some more text"}
+      ]
+    }
+  ]
+}
